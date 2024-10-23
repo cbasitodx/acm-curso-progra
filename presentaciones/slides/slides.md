@@ -6,8 +6,8 @@ highlighter: shiki
 class: text-left
 lineNumbers: true
 info: |
-  ## Introducción a Programación I (2023)
-  Presentación del curso de programación I de ACM UPM 2023
+  ## Introducción a Programación I (2024)
+  Presentación del curso de programación I de ACM UPM 2024
 drawings:
   persist: false
 transition: slide-left
@@ -15,7 +15,7 @@ fonts:
     sans: Jost
     mono: mononoki, Source Code Pro
     local: mononoki
-author: Borja Martinena
+author: Borja Martinena & Sebastián Conde
 ---
 
 ## [ACM]
@@ -23,7 +23,7 @@ author: Borja Martinena
 
 ¿Qué significa programar y cómo hacerlo bien?
 
-Borja Martinena
+Borja Martinena & Sebastián Conde
 
 <style>
     h1 {
@@ -55,26 +55,25 @@ https://github.com/aafrecct/acm-curso-progra
 
 <br>
 
-https://play.nim-lang.org/
+https://www.programiz.com/java-programming/online-compiler/
 
+<br>
 ---
 
 # **Índice**
 
 <v-clicks>
 
-1. **¿Qué es programar?**
-    - ¿Cómo funciona un ordenador? 
-    - Ensamblador
-    - ¿Qué es compilar?
-
-2. **Elementos básicos de la programación imperativa**
+1. **Elementos básicos de la programación**
     - Números
     - Strings
     - Condiciones
     - Bucles
     - Colecciones
     - Funciones
+    - Tipos
+    - Null
+    - Errores y excepciones
 
 </v-clicks>
 
@@ -84,12 +83,7 @@ https://play.nim-lang.org/
 
 <v-clicks>
 
-3. **Otros conceptos importantes de programación**
-    - Tipos
-    - Null
-    - Errores y excepciones
-
-4. **Java** 
+2. **Java** 
     - Estructura básica del código
     - Tipos
     - Control de flujo
@@ -99,72 +93,10 @@ https://play.nim-lang.org/
 </v-clicks>
 
 ---
-
-### PARTE 1
-# **¿Qué es programar?**
-
-<br>
-
-- **Transistores** a partir de material semiconductor.
-- **Puertas lógicas** a partir de transistores.
-- **Operaciones binarias** a partir de puertas lógicas.
-- **Procesadores de instrucciones** combinando operaciones binarias.
-- **Lenguajes simbólicos** para escribir instrucciones para un procesador.
-- **Lenguajes de alto nivel** que se traducen a lenguajes ensamblador.
-
-<!--
-Mencionar asignaturas: Física, Sistemas Digitales, Estructura y Arquitectura y PDL.
--->
-
----
-level: 2
----
-
-# Programación en Ensamblador
-
-<br>
-<br>
-
-### Binario
-
-```
-10101010 00001000 00100010
-11001000 00000000 01001010
-```
-
-<br>
-<br>
-
-### Ensamblador
-
-```
-add 8 34
-mov r0 #10
-```
-<span class="lang">assembly</span>
-
----
-
-# Código de alto nivel
-
-<br>
-<br>
-
-```nim
-var 
-    naranjas: int = 1000;
-    limones: int = 2000;
-    frutas: int = naranjas + limones;
-
-echo "Hay un total de ", frutas, " frutas."
-```
-<span class="lang">nim</span>
-
----
 layout: section
 ---
 
-### PARTE 2
+### PARTE 1
 # **Aprendamos a programar**
 
 ---
@@ -173,11 +105,11 @@ layout: quote
 
 ### Números
 
-```nim
-var numero_naranjas = 2000
-var nota_programacion_1 = 10
+```java
+int numero_naranjas = 2000;
+int nota_programacion_1 = 10;
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 ---
 layout: quote
@@ -185,12 +117,12 @@ layout: quote
 
 ### Números
 
-```nim {all|1|2|3}
-var a: int8 = 128
-var b: int64 = 100000000
-var c: float32 = 3.14
+```java {all|1|2|3}
+short a = 32767;              // 2 bytes
+int b = 2147483647;           // 4 bytes 
+long c = 9223372036854775807; // 8 bytes
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 ---
 layout: quote
@@ -198,18 +130,18 @@ layout: quote
 
 ### Números
 
-```nim
-var numero: int8 = 129
-echo numero
+```java
+int numero = 129;
+System.out.println(numero);
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 <br>
 
 <v-click>
 
 ```
--127
+129
 ```
 
 </v-click>
@@ -220,22 +152,31 @@ layout: quote
 
 ### Números
 
-```nim
-var a: int = 32
-var b: int = 8
+```java
+int a = 32;
+int b = 8;
 
-# Prueba los siguientes operadores: + - * / mod
-var resultado = a * b
-echo resultado
+// Prueba los siguientes operadores: + - * / mod
+int suma = a + b;
+int resta = a - b;
+int mult = a * b;
+int div = a / b; // NO redondea! Trunca
+int mod = a % mod;
+
+System.out.println(suma);
+System.out.println(resta);
+System.out.println(mult);
+System.out.println(div);
+System.out.println(mod);
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 <br>
 
 <v-click>
 
 ```
-256
+40, 24, 256, 4, 0
 ```
 
 </v-click>
@@ -246,10 +187,10 @@ layout: quote
 
 ### Strings
 
-```nim
-var saludo: string = "hola mundo"
+```java
+String saludo = "hola mundo";
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 ---
 layout: quote
@@ -259,19 +200,19 @@ layout: quote
 
 <div class="overflow-scroll ">
 
-| Posición en mem. | Datos en mem.   | Letra representada |
-|:----------------:|:----------------|:------------------:|
-| 00               | `01101000` (104)| h                  |
-| 01               | `01101111` (111)| o                  |
-| 02               | `01101100` (108)| l                  |
-| 03               | `01100001` (97) | a                  |
-| 04               | `00100000` (32) | \<espacio\>        |
-| 05               | `01101101` (109)| m                  |
-| 06               | `01110101` (117)| u                  |
-| 07               | `01101110` (110)| n                  |
-| 08               | `01100100` (100)| d                  |
-| 09               | `01101111` (111)| o                  |
-| 10               | `00000000` (0)  | \<null\>           |
+|ASCII            | Letra representada |
+|:---------------:|:------------------:|
+| 104             | h                  |
+| 111             | o                  |
+| 108             | l                  |
+| 97              | a                  |
+| 32              | \<espacio\>        |
+| 109             | m                  |
+| 117             | u                  |
+| 110             | n                  |
+| 100             | d                  |
+| 111             | o                  |
+| 0               | \<null\>           |
 
 </div>
 
@@ -281,27 +222,14 @@ layout: quote
 
 ### Strings
 
-```rust
-let saludo: &str = "hola mundo";
-let mut saludo_2: String = String::from("hola a todos");
+```java
+String a = "Las cadenas son secuencias de ";
+String b  = "caracteres";
+char c = 'a'
+
+System.out.println(a + b); // Concatenacion de strings!
 ```
-<span class="lang">rust</span>
-
----
-layout: quote
----
-
-### Strings
-
-```nim
-var a: string = "Las cadenas son secuencias de "
-var b: string = "caracteres"
-var c: char   = 'a'
-
-echo a & b
-echo c in a
-```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 <br>
 
@@ -309,7 +237,6 @@ echo c in a
 
 ```
 Las cadenas son secuencias de caracteres
-true
 ```
 
 </v-click>
@@ -320,10 +247,11 @@ layout: quote
 
 ### Booleanos
 
-```nim
-var a: bool = true
+```java
+boolean a = true;
+boolean b = false;
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 ---
 layout: quote
@@ -331,12 +259,12 @@ layout: quote
 
 ### Booleanos
 
-``` nim
-echo 2005 > 2001
-echo 9 == 11
-echo 't' in "torre"
+``` java
+System.out.println(2005 > 2001);
+System.out.println(9 == 11);
+System.out.println("torre".contains("t"));
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 <br>
 
@@ -356,15 +284,15 @@ layout: quote
 
 ### Condiciones
 
-```nim
-var numero: int = 1945
+```java
+int numero = 1945;
 
-if numero mod 2 == 0:
-  echo "PAR"
+if (numero % 2) == 0:
+  System.out.println("PAR");
 else:
-  echo "IMPAR"
+  System.out.println("IMPAR");
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 <br>
 
@@ -381,64 +309,64 @@ layout: quote
 ---
 ### Bucles
 
-``` nim
-var i: int = 0
-var j: int = 1
+```java
+int i = 0;
+int j = 1;
 
-echo i
-echo j
+System.out.println(i);
+System.out.println(j);
 
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
-i = i + j
-echo i
-j = j + i
-echo j
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
+i = i + j;
+System.out.println(i);
+j = j + i;
+System.out.println(i);
 ...
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 ---
 layout: quote
@@ -446,21 +374,48 @@ layout: quote
 
 ### Bucles FOR
 
-``` nim
-var i = 0
-var j = 1
-var k = 0
+``` java
+int i = 0;
+int j = 1;
+int k = 0;
 
-echo i
-echo j
+System.out.println(i);
+System.out.println(j);
 
-for c in 3..50:
-	k = i + j
-	i = j
-	j = k
-	echo k
+for (int c = 3; c < 5; c++) {
+	k = i + j;
+	i = j;
+	j = k;
+	System.out.println(k);
+}
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
+
+---
+layout: quote
+---
+
+### Condiciones en un bucle FOR
+``` java
+String miString = "hol";
+
+int x = 1;
+for (; miString.contains("a"); x++) {
+	miString += "a";
+}
+
+System.out.println(x);
+```
+
+<br>
+
+<v-click>
+
+```
+1
+```
+
+</v-click>
 
 ---
 layout: quote
@@ -468,14 +423,14 @@ layout: quote
 
 ### Bucles WHILE
 
-```nim
-var i = 0
-var j = 1
-var k = 0
-var c = 0
+```java
+int i = 0;
+int j = 1;
+int k = 0;
+int c = 0;
 
-echo i
-echo j
+System.out.println(x);
+System.out.println(x);
 
 while k < 10000:
 	k = i + j
@@ -641,7 +596,7 @@ No hace falta memorizar esto, pero puede ayudarte a entender algunas cosas.
 layout: section
 ---
 
-### PARTE 4
+### PARTE 2
 ## Programación imperativa en
 # Java
 
