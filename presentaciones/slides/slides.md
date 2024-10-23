@@ -406,6 +406,7 @@ for (; miString.contains("a"); x++) {
 
 System.out.println(x);
 ```
+<span class="lang">java</span>
 
 <br>
 
@@ -429,17 +430,18 @@ int j = 1;
 int k = 0;
 int c = 0;
 
-System.out.println(x);
-System.out.println(x);
+System.out.println(i);
+System.out.println(j);
 
-while k < 10000:
-	k = i + j
-	i = j
-	j = k
-	c = c + 1
-	echo c & ": " & k
+while (k < 10000) {
+	k = i + j;
+	i = j;
+	j = k;
+	c = c + 1;
+	System.out.println(c + ": " + k);
+}
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 ---
 layout: quote
@@ -447,21 +449,23 @@ layout: quote
 
 ### Colecciones
 
-```nim
-var notas_progra: array[8, int] = [1, 5, 2, 5, 7, 3, 6, 7]
+```java
+int[] notas_progra = {1, 5, 2, 5, 7, 3, 6, 7};
 
-echo notas_progra[3]
+System.out.println(notas_progra[3]);
 
-var suma: int = 0
-var media: float
+int suma = 0;
+float media;
 
-for nota in notas_progra:
-  suma = suma + nota
+for (int i = 0; i < notas_progra.length; i++) {
+    int nota = notas_progra[i];
+    suma = suma + nota; // Es lo mismo que suma += nota !!
+}
 
-media = suma / 8
-echo media
+media = suma / 8f;
+System.out.println(media);
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 ---
 layout: quote
@@ -469,36 +473,31 @@ layout: quote
 
 ### Funciones
 
-```nim {all|1|2-3|5-8|10-12|14|16}
-proc mcd(num1: int, num2: int): int =
-  var min: int
-  var mcd: int
+```java {all|1|2-3|5-8|10-12|14|16}
+int mcd(int num1, int num2) {
+  int min;
+  int mcd = 0;
   
-  if num1 < num2:
-    min = num1
-  else:
-    min = num2
+  if (num1 < num2)
+    min = num1;
+  else
+    min = num2;
   
-  for i in 1..min:
-    if num1 mod i == 0 and num2 mod i == 0:
-      mcd = i
+  for (int i = 1; i <= min; i++)
+    if (num1 % i == 0 && num2 % i == 0)
+      mcd = i;
   
-  return mcd
-
-echo mcd(15, 30)
+  return mcd;
+}
+System.out.println(mcd(15, 30));
 ```
-<span class="lang">nim</span>
+<span class="lang">java</span>
 
 ---
 layout: quote
 ---
 
 ### Null, Nil, None...
-
-```c
-char * cadena = NULL;
-```
-<span class="lang">c</span>
 
 ```java
 String cadena = null;
@@ -509,23 +508,6 @@ String cadena = null;
 cadena = None
 ```
 <span class="lang">python</span>
-
----
-layout: quote
----
-
-### Alternativas
-
-```rust
-fn checked_division(dividend: i32, divisor: i32) -> Option<i32> {
-    if divisor == 0 {
-        None
-    } else {
-        Some(dividend / divisor)
-    }
-}
-```
-<span class="lang">rust</span>
 
 ---
 layout: default
@@ -584,13 +566,6 @@ try {
 }
 ```
 <span class="lang">java</span>
-
----
-layout: quote
----
-
-## Una pequeña nota sobre paradigmas de programación.
-No hace falta memorizar esto, pero puede ayudarte a entender algunas cosas.
 
 ---
 layout: section
@@ -708,14 +683,14 @@ public class IfElse {
 
 ### Otras condiciones
 
-```java {all|4|5|7|8|10|all|14}
+```java {all|7|8|10|11|14|16|all}
 public class MatchCase {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         int numero = 87;
         boolean es_par = numero % 2 == 0;
         int valor_compuesto = es_par ? 100 - numero : 0;
 
-        match (valor_compuesto) {
+        switch (valor_compuesto) {
             case 0:
                 System.out.println("No era par :(");
                 break;
@@ -723,7 +698,8 @@ public class MatchCase {
                 System.out.println("Era par :)");
                 break;
             default:
-                System.out.println("Alguien ha cambiado el valor de `numero`")
+                System.out.println("Alguien ha cambiado el valor de `numero`");
+                break;  // Opcional, pero buena practica
         }
     }
 }
@@ -790,23 +766,6 @@ public class WhileLoops {
         do {
             hacer_algo();
         } while (condición)
-    }
-}
-```
-
----
-
-### Procedimientos
-
-```java {all|3-6|8-11}
-public class WhileLoops {
-
-    void hacer_algo () {
-        Thread.sleep(1000);
-    }
-
-    public static void main (String[] args) {
-        hacer_algo();
     }
 }
 ```
